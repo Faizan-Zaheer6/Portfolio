@@ -3,7 +3,6 @@ from pathlib import Path
 import random
 
 # --- 1. PAGE CONFIGURATION ---
-# Setting up the core page layout and identity for the professional portfolio
 st.set_page_config(
     page_title="Faizan Zaheer | Backend Engineer",
     page_icon="💻",
@@ -12,42 +11,26 @@ st.set_page_config(
 )
 
 # --- 2. ADVANCED PURPLE NEON CSS ---
-# This section defines the entire visual identity of the portfolio
-# Using Font Awesome for professional social logos
 st.markdown("""
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <style>
-    /* Smooth scrolling for internal anchors */
-    html {
-        scroll-behavior: smooth;
-    }
-
-    /* Animated Neon Grid Background */
+    html { scroll-behavior: smooth; }
     .stApp {
         background: radial-gradient(circle at center, #1a0b2e 0%, #09050f 100%);
         background-attachment: fixed;
         color: #ffffff;
     }
-    
     .stApp::before {
         content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
         background: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(157, 0, 255, 0.05) 1px, rgba(157, 0, 255, 0.05) 2px);
         pointer-events: none; z-index: 0;
         animation: moveLines 25s linear infinite;
     }
-    
-    @keyframes moveLines {
-        from { background-position: 0 0; }
-        to { background-position: 0 1000px; }
-    }
-
-    /* Floating Tech Symbols in the Background */
+    @keyframes moveLines { from { background-position: 0 0; } to { background-position: 0 1000px; } }
     .tech-element {
         position: fixed; color: rgba(157, 0, 255, 0.08); font-size: 2.5rem;
         pointer-events: none; z-index: -1; filter: blur(1px); opacity: 0.5;
     }
-
-    /* Professional Floating Navigation Bar */
     .nav-container {
         display: flex; justify-content: center; background: rgba(20, 10, 40, 0.95);
         padding: 20px; border-radius: 60px; margin-bottom: 40px;
@@ -55,95 +38,50 @@ st.markdown("""
         position: sticky; top: 10px; z-index: 999;
         box-shadow: 0 0 25px rgba(157, 0, 255, 0.4);
     }
-    
     .nav-item {
         color: #bc6ff1 !important; text-decoration: none; margin: 0 30px;
         font-weight: 800; font-size: 1.2rem; transition: 0.4s ease;
     }
-    
     .nav-item:hover { 
         text-shadow: 0 0 20px #9d00ff; transform: scale(1.15); color: #ffffff !important; 
     }
-    
-    /* Hero Header Container */
     .main-header {
         text-align: center; padding: 6rem 0; background: linear-gradient(135deg, #2d033b 0%, #000000 100%);
         border: 2px solid #9d00ff; border-radius: 35px; margin-bottom: 5rem;
         box-shadow: 0 0 60px rgba(157, 0, 255, 0.3);
     }
-    
     .main-header h1 { font-size: 4.5rem; margin-bottom: 15px; }
-
-    /* Modern Section Headers */
     .section-header {
         color: #bc6ff1; border-bottom: 2.5px solid rgba(157, 0, 255, 0.5);
         padding-bottom: 1.5rem; margin-top: 5rem; margin-bottom: 3rem; 
         font-weight: 800; font-size: 2.8rem; text-transform: uppercase;
         letter-spacing: 2px;
     }
-
-    /* Standard Interactive Cards */
     .custom-card {
         background: rgba(255, 255, 255, 0.05); padding: 2.5rem; border-radius: 25px;
         border-left: 8px solid #9d00ff; margin-bottom: 2.5rem; transition: 0.5s ease-in-out;
         border-top: 1px solid rgba(157, 0, 255, 0.2); border-right: 1px solid rgba(157, 0, 255, 0.2);
     }
-    
     .custom-card:hover {
         background: rgba(157, 0, 255, 0.12); transform: translateY(-10px);
         box-shadow: 0 10px 30px rgba(157, 0, 255, 0.2);
     }
-
-    /* Tech Skills Badges */
     .skill-badge {
         display: inline-block; background: rgba(157, 0, 255, 0.2); color: #bc6ff1;
         padding: 0.7rem 1.6rem; border-radius: 40px; border: 1px solid #9d00ff; 
         margin: 0.6rem; font-size: 1rem; font-weight: 700; transition: 0.3s;
     }
-    
-    .skill-badge:hover { 
-        background: #9d00ff; color: #fff; box-shadow: 0 0 15px #9d00ff; 
-    }
-
-    /* Contact Links with Large Glowing Icons */
-    .contact-wrapper {
-        display: flex; justify-content: space-around; padding: 3rem 0; flex-wrap: wrap;
-    }
-    
-    .contact-box {
-        text-align: center; text-decoration: none !important; color: white !important; 
-        transition: 0.4s; width: 220px;
-    }
-    
-    .contact-box i {
-        font-size: 4.5rem; color: #bc6ff1; margin-bottom: 15px; display: block;
-        transition: 0.4s; filter: drop-shadow(0 0 10px rgba(157, 0, 255, 0.4));
-    }
-    
+    .skill-badge:hover { background: #9d00ff; color: #fff; box-shadow: 0 0 15px #9d00ff; }
+    .contact-wrapper { display: flex; justify-content: space-around; padding: 3rem 0; flex-wrap: wrap; }
+    .contact-box { text-align: center; text-decoration: none !important; color: white !important; transition: 0.4s; width: 220px; }
+    .contact-box i { font-size: 4.5rem; color: #bc6ff1; margin-bottom: 15px; display: block; transition: 0.4s; filter: drop-shadow(0 0 10px rgba(157, 0, 255, 0.4)); }
     .contact-box:hover { transform: scale(1.2); }
     .contact-box:hover i { color: #ffffff; filter: drop-shadow(0 0 20px #9d00ff); }
     .contact-box span { font-size: 1.3rem; font-weight: bold; color: #bbbbbb; }
-
-    /* Dynamic Footer Components */
-    .ticker-wrapper {
-        width: 100%; overflow: hidden; background: rgba(157, 0, 255, 0.15);
-        border-top: 2px solid #9d00ff; padding: 18px 0; position: fixed; bottom: 45px; left: 0; z-index: 1000;
-        backdrop-filter: blur(12px);
-    }
-    
-    .ticker {
-        display: inline-block; white-space: nowrap; padding-left: 100%;
-        animation: ticker 45s linear infinite; font-weight: 800; color: #bc6ff1; font-size: 1.1rem;
-    }
-    
+    .ticker-wrapper { width: 100%; overflow: hidden; background: rgba(157, 0, 255, 0.15); border-top: 2px solid #9d00ff; padding: 18px 0; position: fixed; bottom: 45px; left: 0; z-index: 1000; backdrop-filter: blur(12px); }
+    .ticker { display: inline-block; white-space: nowrap; padding-left: 100%; animation: ticker 45s linear infinite; font-weight: 800; color: #bc6ff1; font-size: 1.1rem; }
     @keyframes ticker { 0% { transform: translate(0, 0); } 100% { transform: translate(-200%, 0); } }
-
-    .footer-handle {
-        position: fixed; bottom: 0; left: 0; width: 100%; background: #09050f;
-        color: #9d00ff; text-align: center; padding: 12px 0; font-family: 'Courier New', monospace;
-        font-size: 1rem; letter-spacing: 3px; border-top: 1px solid rgba(157, 0, 255, 0.2);
-        z-index: 1001; font-weight: bold;
-    }
+    .footer-handle { position: fixed; bottom: 0; left: 0; width: 100%; background: #09050f; color: #9d00ff; text-align: center; padding: 12px 0; font-family: 'Courier New', monospace; font-size: 1rem; letter-spacing: 3px; border-top: 1px solid rgba(157, 0, 255, 0.2); z-index: 1001; font-weight: bold; }
 </style>
 
 <div class="nav-container">
@@ -156,7 +94,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- 3. BACKGROUND FLOATING ANIMATION LOGIC ---
-# Defining symbols and creating random floating elements for the 'Tech Feel'
 tech_symbols = ["💻", "🤖", "FastAPI", "Python", "SQL", "JWT", "Docker", "PostgreSQL", "🧠", "⚡", "JSON", "Git"]
 floating_html = ""
 for _ in range(25):
@@ -180,7 +117,7 @@ st.markdown(f"""
 st.markdown("""
 <div class="main-header">
     <h1 style='color: #bc6ff1;'>👨‍💻 Muhammad Faizan Zaheer</h1>
-    <h3 style='color: #ffffff;'>Backend Engineer | FastAPI&PostgreSQ Specialist | AI Enthusiast </h3>
+    <h3 style='color: #ffffff;'>Backend Engineer | FastAPI Specialist | AI Enthusiast </h3>
     <p style='color: #bbbbbb; font-size: 1.4rem; max-width: 850px; margin: 0 auto; line-height: 1.6;'>
         Building High-Performance API Architectures, Secure Authentication Systems, 
         and Modern Backend Solutions with a focus on Type-Safety and Scalability.
@@ -228,7 +165,6 @@ with col_b:
 st.markdown('<div id="projects"></div>', unsafe_allow_html=True)
 st.markdown('<h2 class="section-header">🚀 Featured Projects</h2>', unsafe_allow_html=True)
 
-# Fixed missing comma and cleaned descriptions
 all_projects = [
     (
         "🔐 NeonSecureVault", 
@@ -240,20 +176,26 @@ all_projects = [
         "Fast URL shortener built for scale. Includes high-performance schema validation via <b>Pydantic v2</b> and persistent storage on Neon DB.", 
         "FastAPI, PostgreSQL, Pydantic, Streamlit"
     ),
-    (
-        "🤖 AI-Based Ecommerce Engine", 
-        "Engineered a RAG-powered Chatbot using Vector Databases for context-aware product recommendations and intelligent user interactions.", 
-        "FastAPI, Pinecone, Redis, OpenAI"
-    ),
+    # Commented as requested:
+    # (
+    #     "🤖 AI-Based Ecommerce Engine", 
+    #     "Engineered a RAG-powered Chatbot using Vector Databases for context-aware product recommendations.", 
+    #     "FastAPI, Pinecone, Redis, OpenAI"
+    # ),
     (
         "📊 Pulse Era Monitor", 
         "A futuristic, real-time website monitoring dashboard built with FastAPI and Streamlit. Features automated system health tracking.", 
         "FastAPI, Discord Hooks, Neon DB"
-    ), # Added missing comma here
+    ),
     (
         "🌤️ SKY-Pulse-API-Project", 
         "Futuristic, real-time weather and air quality monitoring dashboard. Fetches live data via <b>OpenWeatherMap APIs</b> with advanced atmospheric data visualization.", 
         "FastAPI, Streamlit, OpenWeatherMap API, Python Requests"
+    ),
+    (
+       "🎓 EduManage Pro – Student & Course Management System",
+       "FastAPI-driven management platform featuring dashboard for real-time educational analytics. Developed a secure Admin Panel with full CRUD functionality.",
+       "FastAPI, PostgreSQL, SQLAlchemy, Jinja2"
     )
 ]
 
@@ -268,6 +210,7 @@ for title, desc, tech in all_projects:
         </div>
     </div>
     """, unsafe_allow_html=True)
+
 # --- 8. EDUCATION SECTION ---
 st.markdown('<h2 class="section-header">🎓 Education</h2>', unsafe_allow_html=True)
 st.markdown("""
@@ -357,9 +300,8 @@ st.markdown("""
     </div>
 </div>
 <div class="footer-handle">
-    @Faizan-Zaheer6 | 2026 Developer Portfolio
+    @Faizan-Zaheer6 | Developer Portfolio
 </div>
 """, unsafe_allow_html=True)
 
-# Final spacing for scrolling room
 st.markdown("<br><br><br><br><br><br>", unsafe_allow_html=True)
