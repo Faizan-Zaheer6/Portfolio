@@ -1,0 +1,9 @@
+{
+    "allow_headers": ["Authorization", "Content-Type"],
+    "routes": [
+      {
+        "src": "(.*)",
+        "dest": "portfolio.py"
+      }
+    ]
+  }
