@@ -1,8 +1,14 @@
 {
-    "allow_headers": ["Authorization", "Content-Type"],
+    "version": 2,
+    "builds": [
+      {
+        "src": "portfolio.py",
+        "use": "@vercel/python"
+      }
+    ],
     "routes": [
       {
-        "src": "(.*)",
+        "src": "/(.*)",
         "dest": "portfolio.py"
       }
     ]
